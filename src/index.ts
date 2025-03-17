@@ -75,28 +75,53 @@ app.post("/save-admin", async (req: Request, res: Response): Promise<any> => {
 
     const token = req.headers["authorization"];
 
+    // const response = await axios.post(
+    //   ADMIN_URL,
+    //   graphqlPayload,
+    //   {
+    //     headers: {
+    //       "Accept-Language": "en-US,en;q=0.9",
+    //       Connection: "keep-alive",
+    //       Origin: "https://dev-admin.allupfitness.com",
+    //       Referer: "https://dev-admin.allupfitness.com",
+    //       "Sec-Fetch-Dest": "empty",
+    //       "Sec-Fetch-Mode": "cors",
+    //       "Sec-Fetch-Site": "same-site",
+    //       "User-Agent":
+    //         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    //       Accept: "*/*",
+    //       Authorization: `${token}`,
+    //       "Content-Type": "application/json",
+    //       "sec-ch-ua": `"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"`,
+    //       "sec-ch-ua-mobile": "?0",
+    //       "sec-ch-ua-platform": `"Windows"`,
+    //       source: "admin",
+    //       "x-app-source": "ADMIN_PLATFORM",
+    //     },
+    //   }
+    // );
+
     const response = await axios.post(
       ADMIN_URL,
       graphqlPayload,
       {
         headers: {
-          "Accept-Language": "en-US,en;q=0.9",
+          "Accept-Language": process.env.APP_ACCEPT_LANGUAGE,
           Connection: "keep-alive",
-          Origin: "https://dev-admin.allupfitness.com",
-          Referer: "https://dev-admin.allupfitness.com",
+          Origin: process.env.APP_ORIGIN,
+          Referer: process.env.APP_REFERER,
           "Sec-Fetch-Dest": "empty",
           "Sec-Fetch-Mode": "cors",
           "Sec-Fetch-Site": "same-site",
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+          "User-Agent": process.env.APP_USER_AGENT,
           Accept: "*/*",
           Authorization: `${token}`,
-          "Content-Type": "application/json",
-          "sec-ch-ua": `"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"`,
-          "sec-ch-ua-mobile": "?0",
-          "sec-ch-ua-platform": `"Windows"`,
-          source: "admin",
-          "x-app-source": "ADMIN_PLATFORM",
+          "Content-Type": process.env.APP_CONTENT_TYPE,
+          "sec-ch-ua": process.env.APP_SEC_CH_UA,
+          "sec-ch-ua-mobile": process.env.APP_SEC_CH_UA_MOBILE,
+          "sec-ch-ua-platform": process.env.APP_SEC_CH_UA_PLATFORM,
+          source: process.env.APP_SOURCE,
+          "x-app-source": process.env.APP_X_APP_SOURCE,
         },
       }
     );

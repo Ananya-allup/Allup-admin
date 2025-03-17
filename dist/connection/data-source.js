@@ -6,12 +6,12 @@ const typeorm_1 = require("typeorm");
 const admin_1 = require("../entity/admin");
 const role_1 = require("../entity/role");
 exports.AppDataSource = new typeorm_1.DataSource({
-    type: "postgres",
+    type: "mariadb",
     host: "localhost",
-    port: 5432,
-    username: "postgres",
+    port: 3307,
+    username: "root",
     password: "root",
-    database: "allup_db",
+    database: "testdb",
     entities: [admin_1.Admin, role_1.Role],
     synchronize: true,
     // logging: true,
